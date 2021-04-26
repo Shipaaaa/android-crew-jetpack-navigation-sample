@@ -1,31 +1,27 @@
 package ru.shipa.navigation.sample.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.redmadrobot.extensions.lifecycle.observe
+import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
+import ru.shipa.navigation.sample.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val viewBinding: FragmentHomeBinding by viewBinding()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    private val viewModel: HomeViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observe(viewModel.text, ::handleState)
+    }
+
+    private fun handleState(text: String) {
+        viewBinding.textHome.text = text
     }
 }

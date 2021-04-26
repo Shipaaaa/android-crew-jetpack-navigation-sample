@@ -1,31 +1,27 @@
 package ru.shipa.navigation.sample.ui.dashboard
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.redmadrobot.extensions.lifecycle.observe
+import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
+import ru.shipa.navigation.sample.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private val viewBinding: FragmentDashboardBinding by viewBinding()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    private val viewModel: DashboardViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observe(viewModel.text, ::handleState)
+    }
+
+    private fun handleState(text: String) {
+        viewBinding.textDashboard.text = text
     }
 }
