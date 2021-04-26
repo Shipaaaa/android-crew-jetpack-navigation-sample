@@ -5,7 +5,7 @@
     android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.counter.CounterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,14 +16,14 @@
         android:paddingBottom="32dp">
 
         <TextView
-            android:id="@+id/text_dashboard"
+            android:id="@+id/counter_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="24dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            tools:text="[This is dashboard Fragment]" />
+            tools:text="[Открыто экранов: 1]" />
 
         <Space
             android:layout_width="wrap_content"
@@ -31,12 +31,12 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/counter_button"
+            android:id="@+id/count_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:text="Открыть экран с счетчиком" />
+            android:text="Открыть новый экран" />
 
         <Button
             android:id="@+id/success_button"

@@ -1,19 +1,22 @@
-package ru.shipa.navigation.sample.ui.home
+package ru.shipa.navigation.sample.ui.counter
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
-import ru.shipa.navigation.sample.databinding.FragmentHomeBinding
+import ru.shipa.navigation.sample.databinding.FragmentCounterBinding
 import ru.shipa.navigation.sample.ui.base.BaseFragment
 
-class HomeFragment : BaseFragment(R.layout.fragment_home) {
+class CounterFragment : BaseFragment(R.layout.fragment_counter) {
 
-    private val viewBinding: FragmentHomeBinding by viewBinding()
+    private val args: CounterFragmentArgs by navArgs()
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewBinding: FragmentCounterBinding by viewBinding()
+
+    private val viewModel: CountViewModel by viewModels()
 
     override val messagesContainer = R.id.root_container
 
@@ -23,15 +26,17 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         observe(viewModel.text, ::handleState)
         observe(viewModel.events, ::handleEvent)
 
-        initViews()
+        viewModel.setCount(args.counter)
+
+        initView()
     }
 
-    private fun handleState(text: String) {
-        viewBinding.textHome.text = text
+    private fun handleState(count: Int) {
+        viewBinding.counterText.text = getString(R.string.counter_text, count)
     }
 
-    private fun initViews() {
-        viewBinding.counterButton.setOnClickListener { viewModel.onCounterButtonClick() }
+    private fun initView() {
+        viewBinding.countButton.setOnClickListener { viewModel.onCountButtonClick() }
 
         viewBinding.successButton.setOnClickListener { viewModel.onSuccessButtonClick() }
         viewBinding.errorButton.setOnClickListener { viewModel.onErrorButtonClick() }

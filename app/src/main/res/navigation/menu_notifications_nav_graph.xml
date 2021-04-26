@@ -10,6 +10,24 @@
         android:id="@+id/notificationsFragment"
         android:name="ru.shipa.navigation.sample.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications">
+        <action
+            android:id="@+id/toCounterFragment"
+            app:destination="@id/nestedCounterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nestedCounterFragment"
+        android:name="ru.shipa.navigation.sample.ui.counter.CounterFragment"
+        android:label="CounterFragment"
+        tools:layout="@layout/fragment_counter">
+        <action
+            android:id="@+id/toNextCounterFragment"
+            app:destination="@id/nestedCounterFragment" />
+        <argument
+            android:name="counter"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

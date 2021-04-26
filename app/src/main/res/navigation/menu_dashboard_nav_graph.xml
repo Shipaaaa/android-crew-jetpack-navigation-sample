@@ -10,6 +10,24 @@
         android:id="@+id/dashboardFragment"
         android:name="ru.shipa.navigation.sample.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/toCounterFragment"
+            app:destination="@id/nestedCounterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nestedCounterFragment"
+        android:name="ru.shipa.navigation.sample.ui.counter.CounterFragment"
+        android:label="CounterFragment"
+        tools:layout="@layout/fragment_counter">
+        <action
+            android:id="@+id/toNextCounterFragment"
+            app:destination="@id/nestedCounterFragment" />
+        <argument
+            android:name="counter"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
