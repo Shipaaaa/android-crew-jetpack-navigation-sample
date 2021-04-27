@@ -1,26 +1,25 @@
 package ru.shipa.navigation.sample.ui.counter
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.RootNavGraphDirections
-import ru.shipa.navigation.sample.ui.base.BaseViewModel
+import ru.shipa.navigation.sample.ui.base.viewmodel.BaseViewModel
 
-class CountViewModel : BaseViewModel() {
+class CountViewModel : BaseViewModel<CounterViewState>() {
 
-    private val _text = MutableLiveData<Int>()
-
-    val text: LiveData<Int> = _text
+    val counterState = liveState.distinctUntilChanged()
 
     fun setCount(count: Int) {
-        _text.value = if (count < 0) 1 else count
+        updateState(
+            CounterViewState(
+                if (count < 0) 1 else count
+            )
+        )
     }
 
     fun onCountButtonClick() {
-        val counter = text.value ?: return
-
         navigateTo(
-            CounterFragmentDirections.toNextCounterFragment(counter + 1)
+            CounterFragmentDirections.toNextCounterFragment(state.counter + 1)
         )
     }
 

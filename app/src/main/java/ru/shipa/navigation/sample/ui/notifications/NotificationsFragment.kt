@@ -9,7 +9,7 @@ import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentNotificationsBinding
 import ru.shipa.navigation.sample.extension.addOnBackPressedCallback
-import ru.shipa.navigation.sample.ui.base.BaseFragment
+import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
 
@@ -17,7 +17,7 @@ class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
 
     private val viewModel: NotificationsViewModel by viewModels()
 
-    override val messagesContainer = R.id.root_container
+    override fun getMessagesContainer() = R.id.root_container
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,14 +27,14 @@ class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe(viewModel.text, ::handleState)
-        observe(viewModel.events, ::handleEvent)
+        observe(viewModel.textState, ::handleState)
+        observe(viewModel.events, ::handleEvents)
 
         initViews()
     }
 
-    private fun handleState(text: String) {
-        viewBinding.textNotifications.text = text
+    private fun handleState(state: NotificationsViewState) {
+        viewBinding.textNotifications.text = state.text
     }
 
     private fun initViews() {

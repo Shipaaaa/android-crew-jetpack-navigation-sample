@@ -1,24 +1,24 @@
 package ru.shipa.navigation.sample.ui.notifications
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import ru.shipa.navigation.sample.ui.base.BaseViewModel
+import androidx.lifecycle.distinctUntilChanged
+import ru.shipa.navigation.sample.RootNavGraphDirections
+import ru.shipa.navigation.sample.ui.base.viewmodel.BaseViewModel
 import ru.shipa.navigation.sample.ui.home.HomeFragmentDirections
 
-class NotificationsViewModel : BaseViewModel() {
+class NotificationsViewModel : BaseViewModel<NotificationsViewState>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    init {
+        updateState(NotificationsViewState("This is notifications Fragment"))
     }
 
-    val text: LiveData<String> = _text
+    val textState = liveState.distinctUntilChanged()
 
     fun onCounterButtonClick() {
         navigateTo(HomeFragmentDirections.toCounterFragment())
     }
 
     fun onExitButtonClick() {
-        navigateBack()
+        navigateTo(RootNavGraphDirections.logout(), rootGraph = true)
     }
 
     fun onSuccessButtonClick() {

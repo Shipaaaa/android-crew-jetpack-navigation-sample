@@ -8,7 +8,7 @@ import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentCounterBinding
-import ru.shipa.navigation.sample.ui.base.BaseFragment
+import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class CounterFragment : BaseFragment(R.layout.fragment_counter) {
 
@@ -18,21 +18,21 @@ class CounterFragment : BaseFragment(R.layout.fragment_counter) {
 
     private val viewModel: CountViewModel by viewModels()
 
-    override val messagesContainer = R.id.root_container
+    override fun getMessagesContainer() = R.id.root_container
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe(viewModel.text, ::handleState)
-        observe(viewModel.events, ::handleEvent)
+        observe(viewModel.counterState, ::handleState)
+        observe(viewModel.events, ::handleEvents)
 
         viewModel.setCount(args.counter)
 
         initView()
     }
 
-    private fun handleState(count: Int) {
-        viewBinding.counterText.text = getString(R.string.counter_text, count)
+    private fun handleState(state: CounterViewState) {
+        viewBinding.counterText.text = getString(R.string.counter_text, state.counter)
     }
 
     private fun initView() {

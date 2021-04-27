@@ -7,7 +7,7 @@ import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentHomeBinding
-import ru.shipa.navigation.sample.ui.base.BaseFragment
+import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
@@ -15,19 +15,19 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    override val messagesContainer = R.id.root_container
+    override fun getMessagesContainer() = R.id.root_container
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe(viewModel.text, ::handleState)
-        observe(viewModel.events, ::handleEvent)
+        observe(viewModel.textState, ::handleState)
+        observe(viewModel.events, ::handleEvents)
 
         initViews()
     }
 
-    private fun handleState(text: String) {
-        viewBinding.textHome.text = text
+    private fun handleState(state: HomeViewState) {
+        viewBinding.textHome.text = state.text
     }
 
     private fun initViews() {

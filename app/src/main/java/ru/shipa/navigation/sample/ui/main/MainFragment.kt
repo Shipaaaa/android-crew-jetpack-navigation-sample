@@ -8,7 +8,7 @@ import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentMainBinding
 import ru.shipa.navigation.sample.extension.setupWithNavController
-import ru.shipa.navigation.sample.ui.base.BaseFragment
+import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class MainFragment : BaseFragment(R.layout.fragment_main) {
 

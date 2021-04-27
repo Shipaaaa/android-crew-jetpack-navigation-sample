@@ -4,7 +4,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_nav_graph"
-    app:startDestination="@+id/mainFragment">
+    tools:ignore="InvalidNavigation">
+
+    <action
+        android:id="@+id/logout"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@+id/root_nav_graph"
+        app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.shipa.navigation.sample.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/toMainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/root_nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <action
         android:id="@+id/toMain"

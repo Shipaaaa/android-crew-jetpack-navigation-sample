@@ -1,17 +1,16 @@
 package ru.shipa.navigation.sample.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import ru.shipa.navigation.sample.ui.base.BaseViewModel
+import androidx.lifecycle.distinctUntilChanged
+import ru.shipa.navigation.sample.ui.base.viewmodel.BaseViewModel
 import ru.shipa.navigation.sample.ui.home.HomeFragmentDirections
 
-class DashboardViewModel : BaseViewModel() {
+class DashboardViewModel : BaseViewModel<DashboardViewState>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    init {
+        updateState(DashboardViewState("This is dashboard Fragment"))
     }
 
-    val text: LiveData<String> = _text
+    val textState = liveState.distinctUntilChanged()
 
     fun onCounterButtonClick() {
         navigateTo(HomeFragmentDirections.toCounterFragment())

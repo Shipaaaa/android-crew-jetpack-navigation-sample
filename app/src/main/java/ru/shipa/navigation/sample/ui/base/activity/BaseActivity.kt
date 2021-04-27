@@ -1,4 +1,4 @@
-package ru.shipa.navigation.sample.ui.base
+package ru.shipa.navigation.sample.ui.base.activity
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +8,16 @@ import com.google.android.material.snackbar.Snackbar
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.extension.decorate
 
-abstract class BaseActivity : AppCompatActivity(), BaseView {
+abstract class BaseActivity : AppCompatActivity() {
 
     private val mainView by lazy { window.decorView }
 
-    override fun showMessage(
+    fun showMessage(
         messageText: String,
-        actionTitleId: Int?,
-        action: ((View) -> Unit)?,
         containerResId: Int,
         anchorViewId: Int?,
+        actionTitleId: Int?,
+        action: ((View) -> Unit)?,
         duration: Int
     ) {
 
@@ -39,12 +39,12 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         snack?.show()
     }
 
-    override fun showError(
+    fun showError(
         messageText: String,
-        actionTitleId: Int?,
-        action: ((View) -> Unit)?,
         containerResId: Int,
         anchorViewId: Int?,
+        actionTitleId: Int?,
+        action: ((View) -> Unit)?,
         duration: Int
     ) {
 
@@ -84,5 +84,4 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
                 .decorate(backgroundColor, textColor)
         }
     }
-
 }

@@ -1,17 +1,16 @@
 package ru.shipa.navigation.sample.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
 import ru.shipa.navigation.sample.RootNavGraphDirections
-import ru.shipa.navigation.sample.ui.base.BaseViewModel
+import ru.shipa.navigation.sample.ui.base.viewmodel.BaseViewModel
 
-class HomeViewModel : BaseViewModel() {
+class HomeViewModel : BaseViewModel<HomeViewState>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    init {
+        updateState(HomeViewState("This is home Fragment"))
     }
 
-    val text: LiveData<String> = _text
+    val textState = liveState.distinctUntilChanged()
 
     fun onCounterButtonClick() {
         navigateTo(HomeFragmentDirections.toCounterFragment())
