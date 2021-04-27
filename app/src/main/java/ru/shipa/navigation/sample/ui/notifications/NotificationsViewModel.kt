@@ -17,6 +17,10 @@ class NotificationsViewModel : BaseViewModel() {
         navigateTo(HomeFragmentDirections.toCounterFragment())
     }
 
+    fun onExitButtonClick() {
+        navigateBack()
+    }
+
     fun onSuccessButtonClick() {
         showMessage("Кнопка успешно нажата!")
     }

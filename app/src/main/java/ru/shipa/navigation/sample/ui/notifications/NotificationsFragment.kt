@@ -1,5 +1,6 @@
 package ru.shipa.navigation.sample.ui.notifications
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentNotificationsBinding
+import ru.shipa.navigation.sample.extension.addOnBackPressedCallback
 import ru.shipa.navigation.sample.ui.base.BaseFragment
 
 class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
@@ -16,6 +18,11 @@ class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
     private val viewModel: NotificationsViewModel by viewModels()
 
     override val messagesContainer = R.id.root_container
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        addOnBackPressedCallback { viewModel.onExitButtonClick() }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,6 +39,7 @@ class NotificationsFragment : BaseFragment(R.layout.fragment_notifications) {
 
     private fun initViews() {
         viewBinding.counterButton.setOnClickListener { viewModel.onCounterButtonClick() }
+        viewBinding.exitButton.setOnClickListener { viewModel.onExitButtonClick() }
 
         viewBinding.successButton.setOnClickListener { viewModel.onSuccessButtonClick() }
         viewBinding.errorButton.setOnClickListener { viewModel.onErrorButtonClick() }
