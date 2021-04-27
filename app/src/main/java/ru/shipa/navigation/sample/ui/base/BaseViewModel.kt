@@ -33,6 +33,10 @@ abstract class BaseViewModel : ViewModel() {
     protected fun navigateBack() {
         events.offerEvent(NavigationEvent.Back())
     }
+
+    protected fun navigateBackTo(destinationId: Int, inclusive: Boolean) {
+        events.offerEvent(NavigationEvent.BackTo(destinationId, inclusive))
+    }
 }
 
 

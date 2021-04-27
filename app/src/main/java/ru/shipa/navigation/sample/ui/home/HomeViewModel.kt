@@ -2,6 +2,7 @@ package ru.shipa.navigation.sample.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ru.shipa.navigation.sample.RootNavGraphDirections
 import ru.shipa.navigation.sample.ui.base.BaseViewModel
 
 class HomeViewModel : BaseViewModel() {
@@ -14,6 +15,10 @@ class HomeViewModel : BaseViewModel() {
 
     fun onCounterButtonClick() {
         navigateTo(HomeFragmentDirections.toCounterFragment())
+    }
+
+    fun onRootCounterButtonClick() {
+        navigateTo(RootNavGraphDirections.toRootCounterFragment(), rootGraph = true)
     }
 
     fun onSuccessButtonClick() {

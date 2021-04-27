@@ -39,6 +39,22 @@
             android:text="Открыть новый экран" />
 
         <Button
+            android:id="@+id/back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:text="Вернуться в начало" />
+
+        <Button
+            android:id="@+id/main_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:text="Открыть главный экран" />
+
+        <Button
             android:id="@+id/success_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

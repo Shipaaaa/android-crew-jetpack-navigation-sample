@@ -2,6 +2,8 @@ package ru.shipa.navigation.sample.ui.counter
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ru.shipa.navigation.sample.R
+import ru.shipa.navigation.sample.RootNavGraphDirections
 import ru.shipa.navigation.sample.ui.base.BaseViewModel
 
 class CountViewModel : BaseViewModel() {
@@ -20,6 +22,14 @@ class CountViewModel : BaseViewModel() {
         navigateTo(
             CounterFragmentDirections.toNextCounterFragment(counter + 1)
         )
+    }
+
+    fun onBackButtonClick() {
+        navigateBackTo(R.id.mainFragment, inclusive = false)
+    }
+
+    fun onMainButtonClick() {
+        navigateTo(RootNavGraphDirections.toMain())
     }
 
     fun onSuccessButtonClick() {

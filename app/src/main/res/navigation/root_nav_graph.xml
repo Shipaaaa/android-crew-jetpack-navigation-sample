@@ -6,6 +6,12 @@
     android:id="@+id/root_nav_graph"
     app:startDestination="@+id/mainFragment">
 
+    <action
+        android:id="@+id/toMain"
+        app:destination="@id/mainFragment"
+        app:popUpTo="@+id/root_nav_graph"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="ru.shipa.navigation.sample.ui.main.MainFragment"
@@ -15,5 +21,23 @@
     <include app:graph="@navigation/menu_home_nav_graph" />
     <include app:graph="@navigation/menu_dashboard_nav_graph" />
     <include app:graph="@navigation/menu_notifications_nav_graph" />
+
+    <action
+        android:id="@+id/toRootCounterFragment"
+        app:destination="@id/rootCounterFragment" />
+
+    <fragment
+        android:id="@+id/rootCounterFragment"
+        android:name="ru.shipa.navigation.sample.ui.counter.CounterFragment"
+        android:label="CounterFragment"
+        tools:layout="@layout/fragment_counter">
+        <action
+            android:id="@+id/toNextCounterFragment"
+            app:destination="@id/rootCounterFragment" />
+        <argument
+            android:name="counter"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

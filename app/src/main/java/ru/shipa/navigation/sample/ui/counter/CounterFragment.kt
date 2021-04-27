@@ -37,6 +37,8 @@ class CounterFragment : BaseFragment(R.layout.fragment_counter) {
 
     private fun initView() {
         viewBinding.countButton.setOnClickListener { viewModel.onCountButtonClick() }
+        viewBinding.backButton.setOnClickListener { viewModel.onBackButtonClick() }
+        viewBinding.mainButton.setOnClickListener { viewModel.onMainButtonClick() }
 
         viewBinding.successButton.setOnClickListener { viewModel.onSuccessButtonClick() }
         viewBinding.errorButton.setOnClickListener { viewModel.onErrorButtonClick() }

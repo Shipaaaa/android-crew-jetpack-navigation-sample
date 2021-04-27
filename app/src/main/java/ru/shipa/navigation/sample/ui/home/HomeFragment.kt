@@ -32,6 +32,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun initViews() {
         viewBinding.counterButton.setOnClickListener { viewModel.onCounterButtonClick() }
+        viewBinding.rootCounterButton.setOnClickListener { viewModel.onRootCounterButtonClick() }
 
         viewBinding.successButton.setOnClickListener { viewModel.onSuccessButtonClick() }
         viewBinding.errorButton.setOnClickListener { viewModel.onErrorButtonClick() }

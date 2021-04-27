@@ -39,6 +39,14 @@
             android:text="Открыть экран с счетчиком" />
 
         <Button
+            android:id="@+id/root_counter_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:text="Открыть внешний экран с счетчиком" />
+
+        <Button
             android:id="@+id/success_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
