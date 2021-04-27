@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import com.google.android.material.transition.MaterialSharedAxis
 import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentLoginBinding
+import ru.shipa.navigation.sample.extension.transitionSharedAxis
 import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -15,6 +17,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val viewBinding: FragmentLoginBinding by viewBinding()
 
     private val viewModel: LoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        transitionSharedAxis(MaterialSharedAxis.Z)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

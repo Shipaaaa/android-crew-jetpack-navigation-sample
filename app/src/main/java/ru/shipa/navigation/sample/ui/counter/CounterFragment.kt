@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.transition.MaterialSharedAxis
 import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentCounterBinding
+import ru.shipa.navigation.sample.extension.incomeTransitionSharedAxis
 import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class CounterFragment : BaseFragment(R.layout.fragment_counter) {
@@ -19,6 +21,11 @@ class CounterFragment : BaseFragment(R.layout.fragment_counter) {
     private val viewModel: CountViewModel by viewModels()
 
     override fun getMessagesContainer() = R.id.root_container
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        incomeTransitionSharedAxis(MaterialSharedAxis.X)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

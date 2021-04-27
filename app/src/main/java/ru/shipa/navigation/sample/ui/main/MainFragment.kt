@@ -3,16 +3,25 @@ package ru.shipa.navigation.sample.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.transition.MaterialSharedAxis
 import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentMainBinding
+import ru.shipa.navigation.sample.extension.incomeTransitionFadeThrough
+import ru.shipa.navigation.sample.extension.outcomeTransitionSharedAxis
 import ru.shipa.navigation.sample.extension.setupWithNavController
 import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     private val viewBinding: FragmentMainBinding by viewBinding()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        incomeTransitionFadeThrough()
+        outcomeTransitionSharedAxis(MaterialSharedAxis.Z)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

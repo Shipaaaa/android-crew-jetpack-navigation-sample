@@ -59,7 +59,7 @@ fun BottomNavigationView.setupWithNavController(
             fragmentTag,
             navGraphId,
             containerId
-        )
+        ).apply { transitionFadeThrough() }
 
         // Obtain its id
         val graphId = navHostFragment.navController.graph.id

@@ -3,10 +3,12 @@ package ru.shipa.navigation.sample.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.google.android.material.transition.MaterialSharedAxis
 import com.redmadrobot.extensions.lifecycle.observe
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import ru.shipa.navigation.sample.R
 import ru.shipa.navigation.sample.databinding.FragmentHomeBinding
+import ru.shipa.navigation.sample.extension.outcomeTransitionSharedAxis
 import ru.shipa.navigation.sample.ui.base.fragment.BaseFragment
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -16,6 +18,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
 
     override fun getMessagesContainer() = R.id.root_container
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        outcomeTransitionSharedAxis(MaterialSharedAxis.X)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
